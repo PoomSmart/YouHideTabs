@@ -51,7 +51,6 @@ static void hideTabs(YTIGuideResponse *response) {
 
 %hook YTAppGuideServiceCoordinator
 
-// hide usless tabs (https://github.com/PoomSmart/YouHideTabs)
 - (void)handleResponse:(YTIGuideResponse *)response error:(id)error completion:(id)completion {
     hideTabs(response);
     %orig;
