@@ -1,8 +1,8 @@
-#import "../YouTubeHeader/YTIGuideResponse.h"
-#import "../YouTubeHeader/YTIGuideResponseSupportedRenderers.h"
-#import "../YouTubeHeader/YTIPivotBarSupportedRenderers.h"
-#import "../YouTubeHeader/YTIPivotBarRenderer.h"
-#import "../YouTubeHeader/YTIBrowseRequest.h"
+#import <YouTubeHeader/YTIGuideResponse.h>
+#import <YouTubeHeader/YTIGuideResponseSupportedRenderers.h>
+#import <YouTubeHeader/YTIPivotBarSupportedRenderers.h>
+#import <YouTubeHeader/YTIPivotBarRenderer.h>
+#import <YouTubeHeader/YTIBrowseRequest.h>
 
 static void hideTabs(YTIGuideResponse *response) {
     Class YTIBrowseRequestClass = %c(YTIBrowseRequest);
@@ -42,6 +42,16 @@ static void hideTabs(YTIGuideResponse *response) {
     %orig;
 }
 
+- (void)handleResponse:(YTIGuideResponse *)response error:(id)error completion:(id)completion {
+    hideTabs(response);
+    %orig;
+}
+
+%end
+
+%hook YTAppGuideServiceCoordinator
+
+// hide usless tabs (https://github.com/PoomSmart/YouHideTabs)
 - (void)handleResponse:(YTIGuideResponse *)response error:(id)error completion:(id)completion {
     hideTabs(response);
     %orig;

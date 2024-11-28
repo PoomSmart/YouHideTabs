@@ -1,6 +1,6 @@
 Package: com.ps.youhidetabs
 Name: YouHideTabs
-Version: 1.0.0
+Version: 1.0.1
 Architecture: iphoneos-arm
 Description: Hide iOS YouTube app tabs.
 Maintainer: PoomSmart
