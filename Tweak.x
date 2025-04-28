@@ -57,3 +57,17 @@ static void hideTabs(YTIGuideResponse *response) {
 }
 
 %end
+
+%hook YTGuideServiceCoordinatorImpl
+
+- (void)handleResponse:(YTIGuideResponse *)response error:(id)error completion:(id)completion {
+    hideTabs(response);
+    %orig;
+}
+
+- (void)handleLegacyResponse:(YTIGuideResponse *)response error:(id)error completion:(id)completion {
+    hideTabs(response);
+    %orig;
+}
+
+%end
